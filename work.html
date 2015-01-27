@@ -24,6 +24,8 @@
    <link href="css/camera.css" rel="stylesheet">
    <!-- END THEME STYLES -->
     <link rel="icon" type="image/ico" href="http://tattek.com/minimal/assets/images/favicon.ico" />
+	<link href="css/prettyPhoto.css" rel="stylesheet">
+	<link href="css/icons.css" rel="stylesheet">
     <link href="assets/css/minimal.css" rel="stylesheet">   
    <link rel="shortcut icon" href="favicon.ico" />
 </head>
@@ -70,7 +72,7 @@
                         </a>
 					</li>
 					<li class="dropdown">
-                        <a href="/index.html" style="">
+                        <a href="/store.html" style="">
                         	STORE
                         </a>
 					</li>
@@ -80,7 +82,7 @@
                         </a>
 					</li>
 					<li class="dropdown">
-                        <a href="index.html" style="">
+                        <a href="contact.html" style="">
                         	CONTACT
                         </a>
 					</li>		
@@ -530,12 +532,12 @@ body .navbar .navbar-nav > li > a {
 	</style>    
   <script src="assets/scripts/app.js"></script>
 	<script src="assets/scripts/index.js"></script>	
-<script src="js/jquery.flip.js"></script> 
-<script src="js/plugins.js"></script>
-
+	<script src="js/jquery.flip.js"></script> 
+	<script src="js/plugins.js"></script>
+	<script src="js/prettyPhoto.js"></script>
   <script type="text/javascript">
   jQuery(function(){
-
+	
     jQuery('#camera_wrap_4').camera({
 
       height: 'auto',
@@ -585,15 +587,21 @@ body .navbar .navbar-nav > li > a {
         showWorkDetail(workType);
         break;
       case "photographic":
-      case "media":
+	  case "media":
         clearWorkDetail();
-        break;
     }
   };
 
   function showWorkDetail(wt){
     $('.work_block').each(function(key, node){
-        $(node).html($('<img>').attr('src','image/'+wt+'/'+Works[wt][key]+'.jpg'));
+        $(node).html($('<a href="image/'+wt+'/big/'+Works[wt][key]+'.png" rel="prettyPhoto"><img src="image/'+wt+'/'+Works[wt][key]+'.jpg" /></a>'));
+		$('[rel="prettyPhoto"]',$(node)).prettyPhoto({
+			allow_resize: true, /* Resize the photos bigger than viewport. true/false */
+			default_width: 960,
+			default_height: 600,
+			theme:'light_rounded',
+			social_tools:false
+		});
     })
   }
 
@@ -606,6 +614,7 @@ body .navbar .navbar-nav > li > a {
     design : ['01','02','03','04','05','06','07','08','09','10','11','12'],
     printing : ['01','02','03','04','05','06','07','08','09','10','11','12']
   }
+
 
 	</script>
 </body>
